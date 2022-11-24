@@ -33,7 +33,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uv7-UZ-8uq">
-                                <rect key="frame" x="118.5" y="791" width="177" height="31"/>
+                                <rect key="frame" x="74.5" y="791" width="265.5" height="31"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bxr-mg-cjx">
                                         <rect key="frame" x="0.0" y="0.0" width="88.5" height="31"/>
@@ -51,8 +51,19 @@
                                             <segue destination="XE7-gA-5Jr" kind="show" id="hhv-UE-bVa"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vKJ-uv-51K">
+                                        <rect key="frame" x="177" y="0.0" width="88.5" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="발음 평가"/>
+                                    </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uw2-P5-mJ1">
+                                <rect key="frame" x="186.5" y="580" width="41.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -60,11 +71,15 @@
                             <constraint firstItem="3S8-1J-NKI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WUh-wP-UQe"/>
                             <constraint firstItem="uv7-UZ-8uq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="a28-cR-izp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uv7-UZ-8uq" secondAttribute="bottom" constant="40" id="hSZ-7n-X78"/>
+                            <constraint firstItem="Uw2-P5-mJ1" firstAttribute="top" secondItem="3S8-1J-NKI" secondAttribute="bottom" constant="32" id="iVE-RC-oMd"/>
                             <constraint firstItem="3S8-1J-NKI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="mRo-rI-iDE"/>
+                            <constraint firstItem="Uw2-P5-mJ1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mYa-oU-1Md"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="playButton" destination="Bxr-mg-cjx" id="Wjz-sy-IXO"/>
+                        <outlet property="pronunciationButton" destination="vKJ-uv-51K" id="iiL-PX-XRe"/>
+                        <outlet property="pronunciationLabel" destination="Uw2-P5-mJ1" id="IF5-O9-xlX"/>
                         <outlet property="recordButton" destination="3S8-1J-NKI" id="oBp-Nj-oSh"/>
                         <outlet property="transcribeButton" destination="1N8-st-A46" id="LQB-TN-7s8"/>
                     </connections>

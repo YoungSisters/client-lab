@@ -10,13 +10,18 @@ import AVFoundation
 
 class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
+    // MARK: - Properties
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var transcribeButton: UIButton!
+    @IBOutlet weak var pronunciationButton: UIButton!
+    @IBOutlet weak var pronunciationLabel: UILabel!
+    
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     var audioPlayer:AVAudioPlayer?
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -41,6 +46,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
         }
     }
     
+    // MARK: - Actions
     @IBAction func recordButtonTapped() {
         if let recorder = audioRecorder {
             if recorder.isRecording {
@@ -60,6 +66,17 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
         audioPlayer?.play()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let secondViewController = segue.destination as? SecondViewController else {
+            return
+        }
+        secondViewController.audioUrl = audioRecorder.url
+    }
+
+}
+
+// MARK: - Recording
+extension ViewController {
     func startRecording() {
         let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.m4a")
 
@@ -106,13 +123,4 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
             finishRecording(success: false)
         }
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let secondViewController = segue.destination as? SecondViewController else {
-            return
-        }
-        secondViewController.audioUrl = audioRecorder.url
-    }
-
 }
-

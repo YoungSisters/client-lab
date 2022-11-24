@@ -12,6 +12,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
     
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var transcribeButton: UIButton!
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     var audioPlayer:AVAudioPlayer?
@@ -21,19 +22,18 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
         // Do any additional setup after loading the view.
         
         playButton.isEnabled = false
+        transcribeButton.isEnabled = false
         
         recordingSession = AVAudioSession.sharedInstance()
 
         do {
             try recordingSession.setCategory(.playAndRecord, mode: .default)
             try recordingSession.setActive(true)
-            recordingSession.requestRecordPermission() { [unowned self] allowed in
-                DispatchQueue.main.async {
-                    if allowed {
-                        print("음성 녹음 허용")
-                    } else {
-                        // failed to record!
-                    }
+            recordingSession.requestRecordPermission() { allowed in
+                if allowed {
+                    print("음성 녹음 허용")
+                } else {
+                    print("음성 녹음 비허용")
                 }
             }
         } catch {
@@ -91,9 +91,11 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
 
         if success {
             playButton.isEnabled = true
+            transcribeButton.isEnabled = true
             print("finishRecording - success")
         } else {
             playButton.isEnabled = false
+            transcribeButton.isEnabled = true
             print("finishRecording - fail")
             // recording failed :(
         }
@@ -103,6 +105,13 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
         if !flag {
             finishRecording(success: false)
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let secondViewController = segue.destination as? SecondViewController else {
+            return
+        }
+        secondViewController.audioUrl = audioRecorder.url
     }
 
 }

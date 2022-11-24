@@ -32,32 +32,86 @@
                                     <action selector="recordButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="ekD-Vo-O0U"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bxr-mg-cjx">
-                                <rect key="frame" x="170.5" y="791" width="73" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="재생하기"/>
-                                <connections>
-                                    <action selector="playButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fnt-1y-5F3"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uv7-UZ-8uq">
+                                <rect key="frame" x="118.5" y="791" width="177" height="31"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bxr-mg-cjx">
+                                        <rect key="frame" x="0.0" y="0.0" width="88.5" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="재생하기"/>
+                                        <connections>
+                                            <action selector="playButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fnt-1y-5F3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1N8-st-A46">
+                                        <rect key="frame" x="88.5" y="0.0" width="88.5" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="텍스트 변환"/>
+                                        <connections>
+                                            <segue destination="XE7-gA-5Jr" kind="show" id="hhv-UE-bVa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Bxr-mg-cjx" secondAttribute="bottom" constant="40" id="4p9-eO-fgO"/>
-                            <constraint firstItem="Bxr-mg-cjx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SgF-6x-5hM"/>
                             <constraint firstItem="3S8-1J-NKI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WUh-wP-UQe"/>
+                            <constraint firstItem="uv7-UZ-8uq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="a28-cR-izp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uv7-UZ-8uq" secondAttribute="bottom" constant="40" id="hSZ-7n-X78"/>
                             <constraint firstItem="3S8-1J-NKI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="mRo-rI-iDE"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="playButton" destination="Bxr-mg-cjx" id="Wjz-sy-IXO"/>
                         <outlet property="recordButton" destination="3S8-1J-NKI" id="oBp-Nj-oSh"/>
+                        <outlet property="transcribeButton" destination="1N8-st-A46" id="LQB-TN-7s8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="20" y="84"/>
+        </scene>
+        <!--Second View Controller-->
+        <scene sceneID="8g1-Vt-xat">
+            <objects>
+                <viewController storyboardIdentifier="SecondViewController" wantsFullScreenLayout="YES" id="XE7-gA-5Jr" customClass="SecondViewController" customModule="client_lab" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0YT-BN-ahd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="음성 변환 결과" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Knp-Ju-rLv">
+                                <rect key="frame" x="136.5" y="60" width="141" height="30"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duz-uh-TrE">
+                                <rect key="frame" x="16" y="106" width="382" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="IHL-Ug-1Zu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="IHL-Ug-1Zu" firstAttribute="trailing" secondItem="duz-uh-TrE" secondAttribute="trailing" constant="16" id="3kP-ty-WuR"/>
+                            <constraint firstItem="Knp-Ju-rLv" firstAttribute="top" secondItem="IHL-Ug-1Zu" secondAttribute="top" constant="16" id="Im9-7c-ejo"/>
+                            <constraint firstItem="Knp-Ju-rLv" firstAttribute="centerX" secondItem="0YT-BN-ahd" secondAttribute="centerX" id="Mb7-Jh-fAv"/>
+                            <constraint firstItem="duz-uh-TrE" firstAttribute="top" secondItem="Knp-Ju-rLv" secondAttribute="bottom" constant="16" id="RoE-PA-DD6"/>
+                            <constraint firstItem="duz-uh-TrE" firstAttribute="leading" secondItem="IHL-Ug-1Zu" secondAttribute="leading" constant="16" id="cV6-eO-2n8"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="rUJ-Ca-BYu"/>
+                    <connections>
+                        <outlet property="resultLabel" destination="duz-uh-TrE" id="nSQ-qx-uFl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LI7-Wp-8oq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="881" y="84"/>
         </scene>
     </scenes>
     <resources>

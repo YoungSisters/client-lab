@@ -36,6 +36,9 @@
                                 <rect key="frame" x="170.5" y="791" width="73" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="재생하기"/>
+                                <connections>
+                                    <action selector="playButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fnt-1y-5F3"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

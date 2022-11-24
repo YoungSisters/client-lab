@@ -8,12 +8,13 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, AVAudioRecorderDelegate {
+class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
+    var audioPlayer:AVAudioPlayer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,11 +42,22 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     @IBAction func recordButtonTapped() {
-        if audioRecorder == nil {
-            startRecording()
+        if let recorder = audioRecorder {
+            if recorder.isRecording {
+                finishRecording(success: true)
+            } else {
+                startRecording()
+            }
         } else {
-            finishRecording(success: true)
+            startRecording()
         }
+        
+    }
+    
+    @IBAction func playButtonTapped() {
+        audioPlayer = try? AVAudioPlayer(contentsOf: audioRecorder.url)
+        audioPlayer?.delegate = self
+        audioPlayer?.play()
     }
     
     func startRecording() {
@@ -76,7 +88,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     
     func finishRecording(success: Bool) {
         audioRecorder.stop()
-        audioRecorder = nil
 
         if success {
             playButton.isEnabled = true

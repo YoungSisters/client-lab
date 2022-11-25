@@ -55,6 +55,9 @@
                                         <rect key="frame" x="177" y="0.0" width="88.5" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="발음 평가"/>
+                                        <connections>
+                                            <action selector="pronuncationButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="PZc-li-VRg"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -108,20 +111,30 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQw-TM-HDJ">
+                                <rect key="frame" x="16" y="158.5" width="382" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IHL-Ug-1Zu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="IHL-Ug-1Zu" firstAttribute="trailing" secondItem="duz-uh-TrE" secondAttribute="trailing" constant="16" id="3kP-ty-WuR"/>
                             <constraint firstItem="Knp-Ju-rLv" firstAttribute="top" secondItem="IHL-Ug-1Zu" secondAttribute="top" constant="16" id="Im9-7c-ejo"/>
+                            <constraint firstItem="IHL-Ug-1Zu" firstAttribute="trailing" secondItem="cQw-TM-HDJ" secondAttribute="trailing" constant="16" id="MCj-Je-zyO"/>
                             <constraint firstItem="Knp-Ju-rLv" firstAttribute="centerX" secondItem="0YT-BN-ahd" secondAttribute="centerX" id="Mb7-Jh-fAv"/>
                             <constraint firstItem="duz-uh-TrE" firstAttribute="top" secondItem="Knp-Ju-rLv" secondAttribute="bottom" constant="16" id="RoE-PA-DD6"/>
+                            <constraint firstItem="cQw-TM-HDJ" firstAttribute="leading" secondItem="IHL-Ug-1Zu" secondAttribute="leading" constant="16" id="VgN-j8-hD7"/>
+                            <constraint firstItem="cQw-TM-HDJ" firstAttribute="top" secondItem="duz-uh-TrE" secondAttribute="bottom" constant="32" id="aj9-pi-lSO"/>
                             <constraint firstItem="duz-uh-TrE" firstAttribute="leading" secondItem="IHL-Ug-1Zu" secondAttribute="leading" constant="16" id="cV6-eO-2n8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rUJ-Ca-BYu"/>
                     <connections>
                         <outlet property="resultLabel" destination="duz-uh-TrE" id="nSQ-qx-uFl"/>
+                        <outlet property="speakingRateLabel" destination="cQw-TM-HDJ" id="ebn-AR-hNS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LI7-Wp-8oq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

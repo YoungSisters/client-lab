@@ -14,6 +14,8 @@
 		895FF268292BD6810075E591 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 895FF267292BD6810075E591 /* Assets.xcassets */; };
 		895FF26B292BD6810075E591 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 895FF269292BD6810075E591 /* LaunchScreen.storyboard */; };
 		899A048F292FDA7C001D5C7F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899A048E292FDA7C001D5C7F /* SecondViewController.swift */; };
+		899A0492293015C7001D5C7F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 899A0491293015C7001D5C7F /* Alamofire */; };
+		899A049429301866001D5C7F /* PronunciationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899A049329301866001D5C7F /* PronunciationModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,7 @@
 		895FF26A292BD6810075E591 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		895FF26C292BD6810075E591 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		899A048E292FDA7C001D5C7F /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		899A049329301866001D5C7F /* PronunciationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PronunciationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				899A0492293015C7001D5C7F /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +66,7 @@
 				895FF260292BD6800075E591 /* SceneDelegate.swift */,
 				895FF262292BD6800075E591 /* ViewController.swift */,
 				899A048E292FDA7C001D5C7F /* SecondViewController.swift */,
+				899A049329301866001D5C7F /* PronunciationModel.swift */,
 				895FF264292BD6800075E591 /* Main.storyboard */,
 				895FF267292BD6810075E591 /* Assets.xcassets */,
 				895FF269292BD6810075E591 /* LaunchScreen.storyboard */,
@@ -86,6 +91,9 @@
 			dependencies = (
 			);
 			name = "client-lab";
+			packageProductDependencies = (
+				899A0491293015C7001D5C7F /* Alamofire */,
+			);
 			productName = "client-lab";
 			productReference = 895FF25B292BD6800075E591 /* client-lab.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +122,9 @@
 				Base,
 			);
 			mainGroup = 895FF252292BD6800075E591;
+			packageReferences = (
+				899A0490293015C7001D5C7F /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 895FF25C292BD6800075E591 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -143,6 +154,7 @@
 			files = (
 				899A048F292FDA7C001D5C7F /* SecondViewController.swift in Sources */,
 				895FF263292BD6800075E591 /* ViewController.swift in Sources */,
+				899A049429301866001D5C7F /* PronunciationModel.swift in Sources */,
 				895FF25F292BD6800075E591 /* AppDelegate.swift in Sources */,
 				895FF261292BD6800075E591 /* SceneDelegate.swift in Sources */,
 			);
@@ -366,6 +378,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		899A0490293015C7001D5C7F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		899A0491293015C7001D5C7F /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 899A0490293015C7001D5C7F /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 895FF253292BD6800075E591 /* Project object */;
 }

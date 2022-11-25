@@ -11,6 +11,7 @@ import Speech
 class SecondViewController: UIViewController {
     
     @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak var speakingRateLabel: UILabel!
     var audioUrl: URL?
     let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
 //    var recognitionTask: SFSpeechRecognitionTask?
@@ -49,6 +50,9 @@ class SecondViewController: UIViewController {
                         print(result.bestTranscription.formattedString)
                         if result.isFinal {
                             self.resultLabel.text = result.bestTranscription.formattedString
+                            if let metaData = result.speechRecognitionMetadata {
+                                self.speakingRateLabel.text = "WPM: \(metaData.speakingRate)"
+                            }
                         }
                     }
                 })

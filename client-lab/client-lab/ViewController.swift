@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFoundation
+import Alamofire
 
 class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
@@ -19,7 +20,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
     
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
-    var audioPlayer:AVAudioPlayer?
+    var audioPlayer: AVAudioPlayer?
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -28,6 +29,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
         
         playButton.isEnabled = false
         transcribeButton.isEnabled = false
+        pronunciationButton.isEnabled = false
         
         recordingSession = AVAudioSession.sharedInstance()
 
@@ -42,7 +44,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
                 }
             }
         } catch {
-            // failed to record!
+            print("음성 녹음 실패")
         }
     }
     
@@ -66,6 +68,10 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
         audioPlayer?.play()
     }
     
+    @IBAction func pronuncationButtonTapped() {
+        postPronunciation()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let secondViewController = segue.destination as? SecondViewController else {
             return
@@ -78,11 +84,11 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
 // MARK: - Recording
 extension ViewController {
     func startRecording() {
-        let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.m4a")
+        let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.wav")
 
         let settings = [
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            AVSampleRateKey: 12000,
+            AVFormatIDKey: Int(kAudioFormatLinearPCM),
+            AVSampleRateKey: 16000,
             AVNumberOfChannelsKey: 1,
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ]
@@ -109,10 +115,12 @@ extension ViewController {
         if success {
             playButton.isEnabled = true
             transcribeButton.isEnabled = true
+            pronunciationButton.isEnabled = true
             print("finishRecording - success")
         } else {
             playButton.isEnabled = false
-            transcribeButton.isEnabled = true
+            transcribeButton.isEnabled = false
+            pronunciationButton.isEnabled = false
             print("finishRecording - fail")
             // recording failed :(
         }
@@ -122,5 +130,37 @@ extension ViewController {
         if !flag {
             finishRecording(success: false)
         }
+    }
+}
+
+// MARK: - Networking
+extension ViewController {
+    func postPronunciation() {
+        let url = "http://aiopen.etri.re.kr:8000/WiseASR/Pronunciation"
+        let key = "9444c3e9-9f88-4d7c-983f-11d7838950e4"
+        let audioData =  try? Data(contentsOf: (audioRecorder?.url)!)
+        let encodedString = audioData?.base64EncodedString()
+        guard let encodedString = encodedString else {
+            print("오디오 인코딩 실패")
+            return
+        }
+        print(encodedString)
+        let parameters: Parameters = [
+            "access_key": key,
+            "argument": [
+                "language_code": "english",
+                "audio": encodedString
+            ]
+        ]
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json; charset=UTF-8"])
+            .validate()
+            .responseDecodable(of: Pronunciation.self) { response in
+                switch response.result {
+                case .success(let response):
+                    print(response)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
     }
 }

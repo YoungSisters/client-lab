@@ -137,7 +137,7 @@ extension ViewController {
 extension ViewController {
     func postPronunciation() {
         let url = "http://aiopen.etri.re.kr:8000/WiseASR/Pronunciation"
-        let key = "9444c3e9-9f88-4d7c-983f-11d7838950e4"
+        let key = ""
         let audioData =  try? Data(contentsOf: (audioRecorder?.url)!)
         let encodedString = audioData?.base64EncodedString()
         guard let encodedString = encodedString else {
@@ -146,20 +146,26 @@ extension ViewController {
         }
         print(encodedString)
         let parameters: Parameters = [
-            "access_key": key,
             "argument": [
                 "language_code": "english",
                 "audio": encodedString
             ]
         ]
-        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json; charset=UTF-8"])
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json; charset=UTF-8", "Authorization" : key])
             .validate()
             .responseDecodable(of: Pronunciation.self) { response in
                 switch response.result {
                 case .success(let response):
+                    guard let score = response.returnObject?.score else {
+                        return
+                    }
+                    if let score = Double(score) {
+                        self.pronunciationLabel.text = "당신의 발음은 \(String(format: "%.2f", score))점입니다."
+                    }
                     print(response)
+                    
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    print(String(describing: error))
                 }
             }
     }

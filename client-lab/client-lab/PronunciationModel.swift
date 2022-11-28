@@ -25,5 +25,5 @@ struct Pronunciation: Codable {
 
 struct PronuncationScore: Codable {
     var recognized: String
-    var score: Double
+    var score: String
 }

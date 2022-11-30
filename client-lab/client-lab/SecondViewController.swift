@@ -15,6 +15,7 @@ class SecondViewController: UIViewController {
     var audioUrl: URL?
     let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
 //    var recognitionTask: SFSpeechRecognitionTask?
+    var text: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,7 @@ class SecondViewController: UIViewController {
                     } else if let result = result {
                         print(result.bestTranscription.formattedString)
                         if result.isFinal {
+                            self.text = result.bestTranscription.formattedString
                             self.resultLabel.text = result.bestTranscription.formattedString
                             if let metaData = result.speechRecognitionMetadata {
                                 self.speakingRateLabel.text = "WPM: \(metaData.speakingRate)"
@@ -57,5 +59,13 @@ class SecondViewController: UIViewController {
                     }
                 })
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let viewController = segue.destination as? ThirdViewController else {
+            return
+        }
+        
+        viewController.text = self.text
     }
 }

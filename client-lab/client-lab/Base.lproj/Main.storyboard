@@ -117,16 +117,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2e-WG-PqK">
+                                <rect key="frame" x="155" y="711" width="104.5" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="분석 결과 보기"/>
+                                <connections>
+                                    <segue destination="tDP-ml-nOo" kind="show" id="hYX-JG-3VC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IHL-Ug-1Zu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="IHL-Ug-1Zu" firstAttribute="trailing" secondItem="duz-uh-TrE" secondAttribute="trailing" constant="16" id="3kP-ty-WuR"/>
+                            <constraint firstItem="f2e-WG-PqK" firstAttribute="centerX" secondItem="0YT-BN-ahd" secondAttribute="centerX" id="6gy-tb-YgB"/>
                             <constraint firstItem="Knp-Ju-rLv" firstAttribute="top" secondItem="IHL-Ug-1Zu" secondAttribute="top" constant="16" id="Im9-7c-ejo"/>
                             <constraint firstItem="IHL-Ug-1Zu" firstAttribute="trailing" secondItem="cQw-TM-HDJ" secondAttribute="trailing" constant="16" id="MCj-Je-zyO"/>
                             <constraint firstItem="Knp-Ju-rLv" firstAttribute="centerX" secondItem="0YT-BN-ahd" secondAttribute="centerX" id="Mb7-Jh-fAv"/>
                             <constraint firstItem="duz-uh-TrE" firstAttribute="top" secondItem="Knp-Ju-rLv" secondAttribute="bottom" constant="16" id="RoE-PA-DD6"/>
                             <constraint firstItem="cQw-TM-HDJ" firstAttribute="leading" secondItem="IHL-Ug-1Zu" secondAttribute="leading" constant="16" id="VgN-j8-hD7"/>
+                            <constraint firstItem="IHL-Ug-1Zu" firstAttribute="bottom" secondItem="f2e-WG-PqK" secondAttribute="bottom" constant="100" id="YYE-qS-iGN"/>
                             <constraint firstItem="cQw-TM-HDJ" firstAttribute="top" secondItem="duz-uh-TrE" secondAttribute="bottom" constant="32" id="aj9-pi-lSO"/>
                             <constraint firstItem="duz-uh-TrE" firstAttribute="leading" secondItem="IHL-Ug-1Zu" secondAttribute="leading" constant="16" id="cV6-eO-2n8"/>
                         </constraints>
@@ -139,7 +149,57 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LI7-Wp-8oq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="881" y="84"/>
+            <point key="canvasLocation" x="974" y="84"/>
+        </scene>
+        <!--Third View Controller-->
+        <scene sceneID="M67-UA-79L">
+            <objects>
+                <viewController id="tDP-ml-nOo" customClass="ThirdViewController" customModule="client_lab" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JeB-ng-2Uc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="말하기 분석 결과" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTY-St-YsT">
+                                <rect key="frame" x="126" y="60" width="162.5" height="30"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TM2-GD-yi8">
+                                <rect key="frame" x="16" y="106" width="382" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="발음 점수: 0점" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1k-Kd-5CQ">
+                                <rect key="frame" x="16" y="142.5" width="382" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rep-Om-Ibh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="OTY-St-YsT" firstAttribute="top" secondItem="rep-Om-Ibh" secondAttribute="top" constant="16" id="0Q9-KE-sUy"/>
+                            <constraint firstItem="rep-Om-Ibh" firstAttribute="trailing" secondItem="u1k-Kd-5CQ" secondAttribute="trailing" constant="16" id="1Pv-c8-2uf"/>
+                            <constraint firstItem="TM2-GD-yi8" firstAttribute="leading" secondItem="rep-Om-Ibh" secondAttribute="leading" constant="16" id="8JW-dv-TVl"/>
+                            <constraint firstItem="u1k-Kd-5CQ" firstAttribute="top" secondItem="TM2-GD-yi8" secondAttribute="bottom" constant="16" id="Dv4-Wt-gpY"/>
+                            <constraint firstItem="TM2-GD-yi8" firstAttribute="top" secondItem="OTY-St-YsT" secondAttribute="bottom" constant="16" id="Hwx-6s-z5g"/>
+                            <constraint firstItem="rep-Om-Ibh" firstAttribute="trailing" secondItem="TM2-GD-yi8" secondAttribute="trailing" constant="16" id="PYG-8L-ZqJ"/>
+                            <constraint firstItem="u1k-Kd-5CQ" firstAttribute="leading" secondItem="rep-Om-Ibh" secondAttribute="leading" constant="16" id="Q5H-3j-Mot"/>
+                            <constraint firstItem="OTY-St-YsT" firstAttribute="centerX" secondItem="JeB-ng-2Uc" secondAttribute="centerX" id="eaI-zB-suV"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="B0U-Xj-ync"/>
+                    <connections>
+                        <outlet property="grammarLabel" destination="TM2-GD-yi8" id="DE4-JP-W5m"/>
+                        <outlet property="pronunciationLabel" destination="u1k-Kd-5CQ" id="Pu2-sq-vCC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KRm-PL-tDL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1925" y="84"/>
         </scene>
     </scenes>
     <resources>

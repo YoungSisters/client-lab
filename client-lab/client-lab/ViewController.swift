@@ -69,7 +69,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
     }
     
     @IBAction func pronuncationButtonTapped() {
-        postPronunciation()
+//        postPronunciation()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

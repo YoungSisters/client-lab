@@ -66,6 +66,8 @@ class SecondViewController: UIViewController {
             return
         }
         
+        viewController.audioUrl = self.audioUrl
         viewController.text = self.text
     }
 }
+

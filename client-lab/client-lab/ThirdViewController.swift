@@ -20,9 +20,7 @@ class ThirdViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let text = text {
-            grammarLabel.text = text
-        }
+        postGrammar()
         postPronunciation()
     }
     
@@ -40,6 +38,52 @@ class ThirdViewController: UIViewController {
 }
 // MARK: - Networking
 extension ThirdViewController {
+    func postGrammar() {
+        guard let text = text else {
+            return
+        }
+        let url = "https://grammarbot.p.rapidapi.com/check"
+        let headers: HTTPHeaders = [
+            "content-type": "application/x-www-form-urlencoded",
+            "X-RapidAPI-Key": "",
+            "X-RapidAPI-Host": "grammarbot.p.rapidapi.com"
+        ]
+        let parameters: Parameters = [
+            "text": text
+        ]
+        AF.request(url, method: .post, parameters: parameters, headers: headers)
+            .validate()
+            .responseDecodable(of: Grammar.self) { response in
+                switch response.result {
+                case .success(let response):
+                    print(response)
+                    guard let text = self.text else {
+                        return
+                    }
+                    let textArray = Array(text)
+                    var newText = ""
+                    var cursor = 0
+                    
+                    for match in response.matches {
+                        let offset = match.offset
+                        let length = match.length
+                        if cursor > offset {
+                            continue
+                        }
+                        newText += textArray[cursor..<offset]
+                        newText += "[\(String(textArray[offset..<offset+length]))]"
+                        cursor = offset + length
+                        if cursor < textArray.count {
+                            newText += textArray[cursor...]
+                        }
+                    }
+                    self.grammarLabel.text = newText
+                case .failure(let error):
+                    print(String(describing: error))
+                }
+            }
+    }
+    
     func postPronunciation() {
         guard let audioUrl = audioUrl else {
             return
@@ -53,7 +97,6 @@ extension ThirdViewController {
             print("오디오 인코딩 실패")
             return
         }
-        print(encodedString)
         let parameters: Parameters = [
             "argument": [
                 "language_code": "english",
